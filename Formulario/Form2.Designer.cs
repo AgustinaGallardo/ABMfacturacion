@@ -28,15 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataSet11 = new ABMfacturacion.DataSet1();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet11)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataSet11
-            // 
-            this.dataSet11.DataSetName = "DataSet1";
-            this.dataSet11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -57,14 +50,11 @@
             this.Name = "Reporte";
             this.Text = "Reporte";
             this.Load += new System.EventHandler(this.Reporte_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet11)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private DataSet1 dataSet11;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

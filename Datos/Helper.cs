@@ -10,8 +10,18 @@ namespace ABMfacturacion
 {
     internal class Helper
     {
+        private static Helper Instancia;
         SqlCommand cmd = new SqlCommand();
         SqlConnection cnn = new SqlConnection(Properties.Resources.cnnABMfacturacion);
+        
+
+        public static Helper ObtenerInstancia()
+        {
+            if (Instancia == null)
+                Instancia = new Helper();
+            return Instancia;
+
+        }
 
         public DataTable ConectBD(string query)
         {
@@ -26,23 +36,20 @@ namespace ABMfacturacion
             return table;
         }
 
-        public int ProximaFactura()
+        public int ObtenerProximo(string sp_nombre, string nombreOutPut)
         {
-           SqlCommand cmd = new SqlCommand();
             cnn.Open();
             cmd.Connection=cnn;
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "sp_nextFactura";
-            
+            cmd.CommandText=sp_nombre;
+            cmd.CommandType=CommandType.StoredProcedure;
             SqlParameter OutPut = new SqlParameter();
-            OutPut.DbType = DbType.Int32;
-            OutPut.Direction = ParameterDirection.Output;
-            OutPut.ParameterName = "@Next";
+            OutPut.ParameterName = nombreOutPut;
+            OutPut.DbType=DbType.Int32;
+            OutPut.Direction=ParameterDirection.Output;
             cmd.Parameters.Add(OutPut);
             cmd.ExecuteNonQuery();
             cnn.Close();
-
-            return (int)OutPut.Value;
+            return (int)OutPut.Value;            
         }
 
         public bool ConfirmarFactura(Factura oFactura)
@@ -79,7 +86,7 @@ namespace ABMfacturacion
                 {
                     cmdDetalle = new SqlCommand("insertMaestro", cnn, t);
                     cmdDetalle.CommandType=CommandType.StoredProcedure;
-                    cmdDetalle.Parameters.AddWithValue("@id_articulo", item.Articulo.idArticulo);
+                    cmdDetalle.Parameters.AddWithValue("@id_articulo", item.Articulo.IdArticulo);
                     cmdDetalle.Parameters.AddWithValue("@cantidad", item.Cantidad);
                     cmdDetalle.Parameters.AddWithValue("@nro_factura", nroFactura);
                     cmdDetalle.ExecuteNonQuery();

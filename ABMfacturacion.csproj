@@ -69,7 +69,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Datos\Implementacion\FacturaDao.cs" />
     <Compile Include="Datos\Helper.cs" />
+    <Compile Include="Datos\Intefaz\IdaoFactura.cs" />
+    <Compile Include="Datos\Parametro.cs" />
     <Compile Include="Dominio\Articulo.cs" />
     <Compile Include="Dominio\DetalleFactura.cs" />
     <Compile Include="Dominio\Factura.cs" />
@@ -85,6 +88,8 @@
     <Compile Include="Dominio\FormaPago.cs" />
     <Compile Include="Dominio\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\Intefaz\iServicio.cs" />
+    <Compile Include="Servicios\Implementacion\Servicio.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Formulario\Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
