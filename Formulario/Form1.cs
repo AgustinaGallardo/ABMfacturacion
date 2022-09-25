@@ -35,7 +35,7 @@ namespace ABMfacturacion
         private void Form1_Load(object sender, EventArgs e)
         {
             FormasPagos();
-            cboArticulos();
+            //cboArticulos();
             ProximaFactura();
         }
 
@@ -51,28 +51,26 @@ namespace ABMfacturacion
                                                       MessageBoxButtons.OK,MessageBoxIcon.Error);
         }
 
-        private void cboArticulos()
-        {
-            DataTable dt = Helper.ConectBD("sp_CargarArticulos");
-            if(dt != null)
-            {
-                cboArticulo.DataSource = dt;
-                cboArticulo.ValueMember ="id_articulo";
-                cboArticulo.DisplayMember = "descripcion";
-                cboArticulo.DropDownStyle=ComboBoxStyle.DropDownList;
-            }
-        }
+        //private void cboArticulos()
+        //{
+        //    DataTable dt = Helper.ConectBD("sp_CargarArticulos");
+        //    if(dt != null)
+        //    {
+        //        cboArticulo.DataSource = dt;
+        //        cboArticulo.ValueMember ="id_articulo";
+        //        cboArticulo.DisplayMember = "descripcion";
+        //        cboArticulo.DropDownStyle=ComboBoxStyle.DropDownList;
+        //    }
+        //}
 
         private void FormasPagos()
         {
-            DataTable table = Helper.ConectBD("sp_CargarCombo");
-            if (table != null)
-            {
-                cboFormaPago.DataSource = table;
-                cboFormaPago.ValueMember="id_formapago";
-                cboFormaPago.DisplayMember="formapago";
+
+            cboFormaPago.DataSource = gestor.ObtenerTodos();
+                cboFormaPago.ValueMember="IdFormaPago";
+                cboFormaPago.DisplayMember="TipoFP";
                 cboFormaPago.DropDownStyle=ComboBoxStyle.DropDownList;
-            }
+           
         }
         private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

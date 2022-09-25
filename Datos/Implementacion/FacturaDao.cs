@@ -13,7 +13,7 @@ namespace ABMfacturacion.Datos.Implementacion
     {
         public int ObetnerProximo()
         {
-            string sp_nombre = "ProximaFactura";
+            string sp_nombre = "sp_nextFactura";
             string nombreOutput = "@Next";
             return Helper.ObtenerInstancia().ObtenerProximo(sp_nombre, nombreOutput);
         }

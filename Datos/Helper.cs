@@ -28,7 +28,7 @@ namespace ABMfacturacion
         {
             DataTable table = new DataTable();
             cnn.Open();
-            SqlCommand command = new SqlCommand(sp_nombre, cnn);
+            SqlCommand cmd = new SqlCommand(sp_nombre, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             if (values != null)
             {
