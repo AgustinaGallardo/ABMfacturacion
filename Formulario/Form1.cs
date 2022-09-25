@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ABMfacturacion.Servicios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ namespace ABMfacturacion
 {    
     public partial class Form1 : Form
     {
+        private iServicio gestor;
 
         Helper Helper = new Helper();
         DetalleFactura detalle = new DetalleFactura();
@@ -27,6 +29,7 @@ namespace ABMfacturacion
         public Form1()
         {
             InitializeComponent();
+            gestor = new Servicio();
         }       
      
         private void Form1_Load(object sender, EventArgs e)
@@ -38,7 +41,7 @@ namespace ABMfacturacion
 
         private void ProximaFactura()
         {
-            int next = Helper.ProximaFactura();
+            int next = gestor.ObtenerProximo();
             if (next > 0)
             {
                 lblNroFactura.Text = next.ToString();
@@ -113,7 +116,7 @@ namespace ABMfacturacion
             nuevaFactura.Cliente=txtCliente.Text;
             nuevaFactura.Fecha=Convert.ToDateTime (dtpFecha.Value);
             nuevaFactura.FormaPago= Convert.ToInt32(cboFormaPago.SelectedValue);
-            Helper.ProximaFactura();
+            gestor.ObtenerProximo();
             nuevaFactura.NroFactura =Convert.ToInt32( lblNroFactura.Text);
 
             if (Helper.ConfirmarFactura(nuevaFactura))

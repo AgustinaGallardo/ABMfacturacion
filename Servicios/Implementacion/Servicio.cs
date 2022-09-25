@@ -20,5 +20,10 @@ namespace ABMfacturacion.Servicios
         {
             return dao.ObetnerProximo();
         }
+
+        public List<FormaPago> ObtenerTodos()
+        {
+            return dao.ObtenerTodos();
+        }
     }
 }

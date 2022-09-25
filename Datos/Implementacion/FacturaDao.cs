@@ -18,6 +18,20 @@ namespace ABMfacturacion.Datos.Implementacion
             return Helper.ObtenerInstancia().ObtenerProximo(sp_nombre, nombreOutput);
         }
 
-       
+        public List<FormaPago> ObtenerTodos()
+        {
+            List<FormaPago> list = new List<FormaPago>();
+            string sp = "sp_CargarCombo";
+            DataTable tabla = Helper.ObtenerInstancia().ObtenerTodos(sp, null);
+            foreach (DataRow dr in tabla.Rows)
+            {
+                int id = int.Parse(dr["id_formapago"].ToString());
+                string forma = dr["formaPago"].ToString();
+                FormaPago aux = new FormaPago(id, forma);
+                list.Add(aux);
+            }
+            return list;
+
+        }
     }
 }

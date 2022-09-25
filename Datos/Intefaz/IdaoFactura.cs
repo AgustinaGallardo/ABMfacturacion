@@ -9,5 +9,6 @@ namespace ABMfacturacion.Datos.Interfaz
     internal interface IdaoFactura
     {
         int ObetnerProximo();
+        List<FormaPago> ObtenerTodos();
     }
 }

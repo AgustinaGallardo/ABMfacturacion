@@ -9,5 +9,6 @@ namespace ABMfacturacion.Servicios
     internal interface iServicio
     {
         int ObtenerProximo();
+        List<FormaPago> ObtenerTodos();
     }
 }

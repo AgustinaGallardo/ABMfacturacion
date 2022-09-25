@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using ABMfacturacion.Datos;
 
 namespace ABMfacturacion
 {
@@ -21,6 +22,24 @@ namespace ABMfacturacion
                 Instancia = new Helper();
             return Instancia;
 
+        }
+
+        public DataTable ObtenerTodos(string sp_nombre, List<Parametro> values)
+        {
+            DataTable table = new DataTable();
+            cnn.Open();
+            SqlCommand command = new SqlCommand(sp_nombre, cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            if (values != null)
+            {
+                foreach (Parametro oParametro in values)
+                {
+                    cmd.Parameters.AddWithValue(oParametro.Clave,oParametro.Valor);
+                }
+            }
+            table.Load(cmd.ExecuteReader());
+            cnn.Close();
+            return table;
         }
 
         public DataTable ConectBD(string query)

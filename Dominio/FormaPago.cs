@@ -8,14 +8,18 @@ namespace ABMfacturacion
 {
     internal class FormaPago
     {
+        public int IdFormaPago { get; set; }
         public string TipoFP { get; set; }
 
         public FormaPago()
         {
+            this.IdFormaPago = 0;
             this.TipoFP = string.Empty;
+            
         }
-        public FormaPago(string nombre)
+        public FormaPago(int id,string nombre)
         {
+            this.IdFormaPago = id;
             TipoFP = nombre;
         }
     }
